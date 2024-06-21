@@ -25,11 +25,11 @@ const Favorites = () => {
             {favorites.map((news, index) => (
               <li
                 key={index}
-                className="mb-6 max-w-sm rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition duration-300"
+                className="mb-6 w-full rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition duration-300"
               >
                 <Link to={`/articles/details`} state={{ news: news }}>
                   <img
-                    className="w-full h-40 object-cover object-center"
+                    className="w-full object-cover object-center"
                     src={news.urlToImage || image}
                     alt={news.title}
                   />
