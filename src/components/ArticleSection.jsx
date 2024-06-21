@@ -57,15 +57,15 @@ const ArticleSection = ({ category, search }) => {
   );
 
   return (
-    <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+    <div className="w-full mt-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {filteredArticles.map((news, index) => (
         <div
           key={index}
-          className="max-w-sm rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition duration-300"
+          className="w-full rounded-lg overflow-hidden shadow-md bg-white hover:shadow-lg transition duration-300"
         >
           <Link to={`/articles/details`} state={{ news: news }}>
             <img
-              className="w-full h-48 object-cover object-center"
+              className="w-full object-cover object-center"
               src={news.urlToImage || image}
               alt={news.title}
             />
