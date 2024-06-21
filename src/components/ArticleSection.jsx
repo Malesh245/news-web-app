@@ -16,11 +16,17 @@ const ArticleSection = ({ category, search }) => {
     }`;
     try {
       const res = await fetch(url);
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
       const data = await res.json();
       setArticles((prevArticles) => [...prevArticles, ...data.articles]);
       setHasMore(data.articles.length === pageSize);
     } catch (error) {
       console.error("Error fetching articles:", error);
+      if (error.message.includes("426")) {
+        console.error("Server requires an upgrade to a different protocol.");
+      }
     } finally {
       setLoading(false);
     }
@@ -70,7 +76,7 @@ const ArticleSection = ({ category, search }) => {
               alt={news.title}
             />
             <div className="px-4 py-3">
-              <h2 className="text-lg font-semibold mb-2">{news.title}</h2>
+              <h2 className="text-lg font-bold mb-2">{news.title}</h2>
               <p className="text-sm text-gray-600 line-clamp-3">
                 {news.description}
               </p>
